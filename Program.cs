@@ -24,12 +24,21 @@ using (SqliteConnection connection = new SqliteConnection(connectionString))
     //} //Funciona
 
     // c) Insertar registros en PresupuestosDetalle
-    string insertQuery = "INSERT INTO PresupuestosDetalle (idPresupuesto, idProducto, Cantidad) VALUES (1, 3, 2)";
-    using (SqliteCommand insertCmd = new SqliteCommand(insertQuery, connection))
-    {
-        insertCmd.ExecuteNonQuery();
-        Console.WriteLine("Datos insertados en la tabla 'PresupuestosDetalle'.");
-    } //Funciona
+    //string insertQuery = "INSERT INTO PresupuestosDetalle (idPresupuesto, idProducto, Cantidad) VALUES (1, 3, 2)";
+    //using (SqliteCommand insertCmd = new SqliteCommand(insertQuery, connection))
+    //{
+    //    insertCmd.ExecuteNonQuery();
+    //    Console.WriteLine("Datos insertados en la tabla 'PresupuestosDetalle'.");
+    //} //Funciona
+
+    //d) Modificar un producto
+    //string updateQuery = "UPDATE Productos SET Descripcion = 'Teclado sin cable', Precio = 500 WHERE idProducto = 3";
+    //using (SqliteCommand updateCmd = new SqliteCommand(updateQuery, connection))
+    //{
+    //    updateCmd.ExecuteNonQuery();
+    //    Console.WriteLine("Datos insertados en la tabla 'PresupuestosDetalle'.");
+    //} //Funciona
+
     
     // Borrar datos
     //string deleteQuery = "INSERT INTO Productos (Descripcion, Precio) VALUES ('Mouse Cableado Logitech', 5000.0)";
@@ -50,16 +59,16 @@ using (SqliteConnection connection = new SqliteConnection(connectionString))
             //     }
             // }
             // Select de la tabla productos
-            //string selectQuery = "SELECT * FROM Productos";
-            //using (SqliteCommand selectCmd = new SqliteCommand(selectQuery, connection))
-            //using (SqliteDataReader reader = selectCmd.ExecuteReader())
-            //{
-            //    Console.WriteLine("Datos en la tabla 'Productos':");
-            //    while (reader.Read())
-            //    {
-            //        Console.WriteLine($"ID: {reader["idProducto"]}, Descripcion: {reader["Descripcion"]}, Precio: {reader["Precio"]}");
-            //    }
-            //}
+            string selectQuery = "SELECT * FROM Productos";
+            using (SqliteCommand selectCmd = new SqliteCommand(selectQuery, connection))
+            using (SqliteDataReader reader = selectCmd.ExecuteReader())
+            {
+                Console.WriteLine("Datos en la tabla 'Productos':");
+                while (reader.Read())
+                {
+                    Console.WriteLine($"ID: {reader["idProducto"]}, Descripcion: {reader["Descripcion"]}, Precio: {reader["Precio"]}");
+                }
+            }
             // SELECT de la tabla Presupuestos
             //string selectQuery = "SELECT * FROM Presupuestos";
             //using (SqliteCommand selectCmd = new SqliteCommand(selectQuery, connection))
@@ -72,16 +81,16 @@ using (SqliteConnection connection = new SqliteConnection(connectionString))
             //    }
             //}
             // SELECT de la tabla PresupuestosDetalle
-            string selectQuery = "SELECT * FROM PresupuestosDetalle";
-            using (SqliteCommand selectCmd = new SqliteCommand(selectQuery, connection))
-            using (SqliteDataReader reader = selectCmd.ExecuteReader())
-            {
-                Console.WriteLine("Datos en la tabla 'PresupuestosDetalle':");
-                while (reader.Read())
-                {
-                    Console.WriteLine($"idPresupuesto: {reader["idPresupuesto"]}, idProducto: {reader["idProducto"]}, Cantidad: {reader["Cantidad"]}");
-                }
-            }
+            //string selectQuery = "SELECT * FROM PresupuestosDetalle";
+            //using (SqliteCommand selectCmd = new SqliteCommand(selectQuery, connection))
+            //using (SqliteDataReader reader = selectCmd.ExecuteReader())
+            //{
+            //    Console.WriteLine("Datos en la tabla 'PresupuestosDetalle':");
+            //    while (reader.Read())
+            //    {
+            //        Console.WriteLine($"idPresupuesto: {reader["idPresupuesto"]}, idProducto: {reader["idProducto"]}, Cantidad: {reader["Cantidad"]}");
+            //    }
+            //}
 
             connection.Close(); // funcionando
 }
