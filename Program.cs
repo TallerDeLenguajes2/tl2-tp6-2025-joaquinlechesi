@@ -16,12 +16,19 @@ using (SqliteConnection connection = new SqliteConnection(connectionString))
     // }
     
     // Insertar datos
-    string insertQuery = "INSERT INTO Productos (Descripcion, Precio) VALUES ('Mouse Cableado Logitech', 5000.0)";
+    string insertQuery = "INSERT INTO Presupuestos (NombreDestinatario, FechaCreacion) VALUES ('Carlos Ruiz', '2014-10-25')";
     using (SqliteCommand insertCmd = new SqliteCommand(insertQuery, connection))
     {
         insertCmd.ExecuteNonQuery();
-        Console.WriteLine("Datos insertados en la tabla 'Productos'.");
-    }
+        Console.WriteLine("Datos insertados en la tabla 'Presupuestos'.");
+    } //Funciona
+    // Borrar datos
+    //string deleteQuery = "INSERT INTO Productos (Descripcion, Precio) VALUES ('Mouse Cableado Logitech', 5000.0)";
+    //using (SqliteCommand insertCmd = new SqliteCommand(insertQuery, connection))
+    //{
+    //    insertCmd.ExecuteNonQuery();
+    //    Console.WriteLine("Datos insertados en la tabla 'Productos'.");
+    //}
     // Leer datos
             // string selectQuery = "SELECT * FROM productos";
             // using (SqliteCommand selectCmd = new SqliteCommand(selectQuery, connection))
@@ -33,15 +40,26 @@ using (SqliteConnection connection = new SqliteConnection(connectionString))
             //         Console.WriteLine($"ID: {reader["id"]}, Nombre: {reader["nombre"]}, Precio: {reader["precio"]}");
             //     }
             // }
-
-            string selectQuery = "SELECT * FROM Productos";
+            // Select de la tabla productos
+            //string selectQuery = "SELECT * FROM Productos";
+            //using (SqliteCommand selectCmd = new SqliteCommand(selectQuery, connection))
+            //using (SqliteDataReader reader = selectCmd.ExecuteReader())
+            //{
+            //    Console.WriteLine("Datos en la tabla 'Productos':");
+            //    while (reader.Read())
+            //    {
+            //        Console.WriteLine($"ID: {reader["idProducto"]}, Descripcion: {reader["Descripcion"]}, Precio: {reader["Precio"]}");
+            //    }
+            //}
+            // SELECT de la tabla Presupuestos
+            string selectQuery = "SELECT * FROM Presupuestos";
             using (SqliteCommand selectCmd = new SqliteCommand(selectQuery, connection))
             using (SqliteDataReader reader = selectCmd.ExecuteReader())
             {
-                Console.WriteLine("Datos en la tabla 'Productos':");
+                Console.WriteLine("Datos en la tabla 'Presupuestos':");
                 while (reader.Read())
                 {
-                    Console.WriteLine($"ID: {reader["idProducto"]}, Descripcion: {reader["Descripcion"]}, Precio: {reader["Precio"]}");
+                    Console.WriteLine($"ID: {reader["idPresupuestos"]}, Nombre de Destinatario: {reader["NombreDestinatario"]}, Precio: {reader["FechaCreacion"]}");
                 }
             }            
 
