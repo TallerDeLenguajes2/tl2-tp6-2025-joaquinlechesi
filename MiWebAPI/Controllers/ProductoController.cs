@@ -1,0 +1,45 @@
+using Microsoft.AspNetCore.Mvc;
+namespace MiWebAPI;
+
+[ApiController]
+[Route("api/[controller]")]
+public class ProductoController : ControllerBase
+{
+    private ProductoRepository _productoRepository;
+    public ProductoController()
+    {
+        _productoRepository = new ProductoRepository();
+    }
+    [HttpPost("postAgregarProducto")]
+    public IActionResult PostAgregarPedido([FromBody] Productos NuevoProducto)
+    {
+        //cadeteria.AgregarPedido(NuevoPedido);
+        //ADPedidos.Guardar(cadeteria.ListadoPedidos); //funciona
+        _productoRepository.nuevoProducto(NuevoProducto);
+        return Ok(NuevoProducto); //retorna el objeto NuevoPedido
+    }
+    [HttpPut("putModificarProductos")]
+    public IActionResult PutProducto(int id, [FromBody] Productos NuevoProducto)
+    {
+        _productoRepository.modificarProducto(id, NuevoProducto);
+        return Ok(NuevoProducto);
+    }
+    [HttpGet("getProductos")]
+    public IActionResult GetAll()
+    {
+        var listaProductos = _productoRepository.GetAll();
+        return Ok(listaProductos);
+    }
+    [HttpGet("getProducto")]
+    public IActionResult GetById(int id)
+    {
+        var producto = _productoRepository.GetById(id);
+        return Ok(producto);
+    }
+    [HttpGet("deleteBorrarProducto")]
+    public IActionResult DeleteById(int id)
+    {
+        _productoRepository.DeleteById(id);
+        return Ok();
+    }
+}
